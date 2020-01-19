@@ -16,29 +16,64 @@ body {
 }
 
 li {
-    display: grid;
-    grid-template-columns: 70px auto 160px 160px;
-    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
     list-style: none;
     margin: 5px;
-    padding: 5px;
+    padding: 10px;
 }
 
 select {
     font-size: 20px;
     width: 150px;
-    margin: 0 5px;
+    margin: 0 10px;
+    border: 2px solid white;
+}
+
+select:hover {
+    border: 2px solid black;
+}
+
+select:focus {
+    outline: none;
 }
 
 input {
     font-size: 20px;
     width: 60px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+input:hover {
+    border: 2px solid black;
+}
+
+input:focus {
+    outline: none;
 }
 
 button {
     font-size: 20px;
     padding: 5px;
     margin: 10px;
+
+    border: 2px solid white;
+    border-radius: 10px;
+    opacity: 0.95;
+    width: 60px;
+}
+
+button:hover {
+    opacity: 1;
+    border: 2px solid black;
+}
+
+button:focus {
+    outline: none;
 }
 
 .container {
@@ -46,8 +81,10 @@ button {
     justify-content: center;
     flex-direction: column;
 
-    border: 1px solid black;
+    border: 2px solid black;
+    border-radius: 10px;
     padding: 15px;
+    margin: 50px;;
 }
 
 .menu {
@@ -58,7 +95,14 @@ button {
 
 .menu_title {
     margin: 10px;
+    font-size: 30px;
+    font-weight: 500;
     text-transform: uppercase;
+}
+
+.menu_item {
+    display: grid;
+    grid-template-columns: 70px auto 160px 160px;
 }
 
 .order {
@@ -67,10 +111,14 @@ button {
     flex-direction: column;
 }
 
+.total {
+    font-weight: 500;
+}
+
 .pay {
     align-self: center;
     text-transform: uppercase;
     font-size: 22px;
-    background-color: rgb(76, 187, 122);
+    background-color: rgb(66, 173, 84);
     width: 100px;
 }

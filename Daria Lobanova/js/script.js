@@ -62,6 +62,6 @@ function total() {
         totalCalories += ORDER[i].calculateCalories();        
     }
 
-    elem.innerHTML = 'total: ' + totalPrice + ' money / ' + totalCalories + ' calories';
+    elem.innerHTML = 'TOTAL: ' + totalPrice + ' money / ' + totalCalories + ' calories';
     return totalPrice;
 }

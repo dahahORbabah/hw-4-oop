@@ -14,7 +14,7 @@
         <div class="menu">
             <div class="menu_title">menu</div>
             <ul>
-                <li>
+                <li class="menu_item">
                     <input id="hamburger_number_input" type="number" min="1" max="10" value="1">
                     Hamburger
                     <select name="hamburger_size" id="hamburger_size_select">
@@ -28,7 +28,7 @@
                     </select>
                 </li>
                 <button id="hamburger_add">add</button>
-                <li>
+                <li class="menu_item">
                     <input id="salad_input" type="number" min="1" max="10" value="1">
                     Salad
                     <select name="salad_name" id="salad_name_select">
@@ -38,7 +38,7 @@
                     <input id="salad_weight_input" type="number" min="100" max="1000" step="50" value="100">
                 </li>
                 <button id="salad_add">add</button>
-                <li>
+                <li class="menu_item">
                     <input id="drink_input" type="number" min="1" max="10" value="1">
                     Drink
                     <select name="drink_kind" id="drink_kind_select">
@@ -53,7 +53,6 @@
             <ul id="order"></ul>
         </div>
         <div id="total" class="total">
-            total: 
         </div>
         <button id="pay_button" class="pay">pay</button>
     </div>
