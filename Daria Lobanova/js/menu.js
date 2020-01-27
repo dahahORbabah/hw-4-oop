@@ -1,10 +1,10 @@
 var ORDER = [];
+var PORTION = 100;
 
 function Item(price, calories) {
     this.price = price;
     this.calories = calories;
 }
-
 //HAMBURGER
 
 function Hamburger(size, stuffing, number) {
@@ -65,11 +65,11 @@ Salad.prototype.getPortion = function() {
 }
 
 Salad.prototype.calculatePrice = function() {
-    return (this.weight * this.name.price)/100;
+    return (this.weight * this.name.price)/PORTION;
 }
 
 Salad.prototype.calculateCalories = function() {
-    return (this.weight * this.name.calories)/100;
+    return (this.weight * this.name.calories)/PORTION;
 }
 
 //DRINK
