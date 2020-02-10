@@ -6,10 +6,20 @@ function Item(price, calories) {
     this.calories = calories;
 }
 
-function Hamburger(size, stuffing, number) {
+function Dish(type, number) {
+    this.type = type;
+    this.number = number;  
+}
+
+Dish.prototype.getNumber = function() {  
+    return this.number;
+}
+
+function Hamburger(number, size, stuffing) {
+    Dish.call(this, 'Hamburger', this.number = number); 
+
     this.size = size;
     this.stuffing = stuffing;
-    this.number = number;
 }
 
 Hamburger.SIZE_SMALL = new Item(50, 20);
@@ -19,15 +29,20 @@ Hamburger.STUFFING_CHEESE = new Item(10, 20);
 Hamburger.STUFFING_SALAD = new Item(20, 5);
 Hamburger.STUFFING_POTATO = new Item(15, 10);
 
-Hamburger.prototype.calculatePrice = function() {
-    return this.size.price + this.stuffing.price;
+Hamburger.prototype = Object.create(Dish.prototype);
+
+Hamburger.prototype.calculatePrice = function() {    
+    return this.getNumber() * (this.size.price + this.stuffing.price);
 }
 
 Hamburger.prototype.calculateCalories = function() {
-    return this.size.calories + this.stuffing.calories;
+    return this.getNumber() * (this.size.calories + this.stuffing.calories);
 }
 
-function Salad(name, weight, portion) {
+function Salad(number, name, weight, portion) {
+    Dish.call(this, 'Salad', this.number = number);
+
+    this.number = number;
     this.name = name;
     this.weight = weight;
     this.portion = portion;
@@ -36,28 +51,34 @@ function Salad(name, weight, portion) {
 Salad.CAESAR = new Item(100, 20);
 Salad.RUSSIAN_SALAD = new Item(50, 80);
 
+Salad.prototype = Object.create(Dish.prototype);
+
 Salad.prototype.calculatePrice = function() {
-    return (this.weight * this.name.price)/PORTION;
+    return this.number * (this.weight * this.name.price)/PORTION;
 }
 
 Salad.prototype.calculateCalories = function() {
-    return (this.weight * this.name.calories)/PORTION;
+    return this.number * (this.weight * this.name.calories)/PORTION;
 }
 
-function Drink(name, number) {
-    this.name = name;
+function Drink(number, name) {
+    Dish.call(this, 'Drink', this.number = number);
+
     this.number = number;
+    this.name = name;
 }
 
 Drink.COLA = new Item(50, 40);
 Drink.COFFEE = new Item(80, 20);
 
+Drink.prototype = Object.create(Dish.prototype);
+
 Drink.prototype.calculatePrice = function() {
-    return this.name.price * this.number;
+    return this.number * this.name.price;
 }
 
 Drink.prototype.calculateCalories = function() {
-    return this.name.calories * this.number;
+    return this.number * this.name.calories;
 }
 
 document.getElementById('hamburger_add').onclick = function() {    
@@ -87,7 +108,7 @@ document.getElementById('hamburger_add').onclick = function() {
         stuffing = null;
     }
 
-    var hamburger = new Hamburger(size, stuffing, number);
+    var hamburger = new Hamburger(number, size, stuffing);
     addToOrder(hamburger); 
 
     item.appendChild(text);
@@ -98,6 +119,7 @@ document.getElementById('hamburger_add').onclick = function() {
 }
 
 document.getElementById('salad_add').onclick = function() {
+    var number = document.getElementById('salad_input').value;
     var portion = document.getElementById('salad_input').value;
     var name = document.getElementById('salad_name_select').value;
     var weight = document.getElementById('salad_weight_input').value;
@@ -114,7 +136,7 @@ document.getElementById('salad_add').onclick = function() {
         name = null;
     }
 
-    var salad = new Salad(name, weight, portion);
+    var salad = new Salad(number, name, weight, portion);
     addToOrder(salad);
 
     item.appendChild(text);
@@ -140,7 +162,7 @@ document.getElementById('drink_add').onclick = function() {
         name = null;
     }
 
-    var drink = new Drink(name, number);
+    var drink = new Drink(number, name);
     addToOrder(drink);
  
     item.appendChild(text);
