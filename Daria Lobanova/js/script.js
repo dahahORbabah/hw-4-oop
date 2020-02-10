@@ -54,11 +54,11 @@ Salad.RUSSIAN_SALAD = new Item(50, 80);
 Salad.prototype = Object.create(Dish.prototype);
 
 Salad.prototype.calculatePrice = function() {
-    return this.number * (this.weight * this.name.price)/PORTION;
+    return this.getNumber() * (this.weight * this.name.price)/PORTION;
 }
 
 Salad.prototype.calculateCalories = function() {
-    return this.number * (this.weight * this.name.calories)/PORTION;
+    return this.getNumber() * (this.weight * this.name.calories)/PORTION;
 }
 
 function Drink(number, name) {
@@ -74,11 +74,11 @@ Drink.COFFEE = new Item(80, 20);
 Drink.prototype = Object.create(Dish.prototype);
 
 Drink.prototype.calculatePrice = function() {
-    return this.number * this.name.price;
+    return this.getNumber() * this.name.price;
 }
 
 Drink.prototype.calculateCalories = function() {
-    return this.number * this.name.calories;
+    return this.getNumber() * this.name.calories;
 }
 
 document.getElementById('hamburger_add').onclick = function() {    
